@@ -1,6 +1,9 @@
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
+const jwt = require('jsonwebtoken');
 
+
+// register user
 const createUser = async (req, res) => {
     try {
       const { name, email, password } = req.body;
@@ -22,8 +25,15 @@ const createUser = async (req, res) => {
       });
   
       await newUser.save();
-  
-      res.status(201).json({ message: 'User registered successfully!' });
+      
+      // create token 
+        const token = jwt.sign(
+          { id: newUser._id }, 
+          process.env.JWT_SECRET, 
+          { expiresIn: '7d' } // (optional) token expires in 7 days
+        );
+
+      res.status(201).json({ message: 'User registered successfully!', token });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Server error' });
@@ -46,8 +56,15 @@ const createUser = async (req, res) => {
       if (!isMatch) {
         return res.status(400).json({ error: 'Invalid credentials' });
       }
-  
-      res.json({ message: 'Login successful!' });
+        
+            // create token 
+            const token = jwt.sign(
+              { id: user._id }, 
+              process.env.JWT_SECRET, 
+              { expiresIn: '7d' } // (optional) token expires in 7 days
+            );
+            
+      res.json({ message: 'Login successful!', token });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Server error' });
