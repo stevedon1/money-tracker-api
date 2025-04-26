@@ -9,6 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (req,res)=>{res.send("Server running now on port 5000")})
 // Routes
 const transactionRoutes = require('./routes/transactions');
 app.use('/api/transactions', transactionRoutes);

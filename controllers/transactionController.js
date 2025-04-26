@@ -12,9 +12,9 @@ const getTransactions = async (req, res) => {
 
 // Create a transaction
 const createTransaction = async (req, res) => {
-  const { type, category, description, amount, date } = req.body;
+  const {userId, type, category, paymentMethod, description, amount, date } = req.body;
   try {
-    const newTransaction = new Transaction({ userId, type, category, description, amount, date });
+    const newTransaction = new Transaction({ userId, type, category, paymentMethod, description, amount, date });
     await newTransaction.save();
     res.status(201).json(newTransaction);
   } catch (err) {
