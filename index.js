@@ -14,6 +14,9 @@ app.get("/", (req,res)=>{res.send("Server running now on port 5000")})
 const transactionRoutes = require('./routes/transactions');
 app.use('/api/transactions', transactionRoutes);
 
+const userRoutes = require('./routes/userRoutes');
+app.use('/api/auth', userRoutes);
+
 // Connect to MongoDB
 mongoose
   .connect(process.env.MONGODB_URI)
