@@ -2,10 +2,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
-
+const job = require('./lib/cron')
 const app = express();
 const PORT = process.env.PORT || 3001
 
+job.start()
 // Middleware
 app.use(cors());
 app.use(express.json());
