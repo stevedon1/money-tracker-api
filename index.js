@@ -1,7 +1,8 @@
 import express  from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 import job from "./lib/cron.js"
 const app = express();
 const PORT = process.env.PORT || 3001
