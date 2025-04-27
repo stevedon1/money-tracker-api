@@ -1,6 +1,6 @@
-import express  from('express');
-import mongoose from('mongoose');
-import cors from('cors');
+import express  from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
 require('dotenv').config();
 import job from "./lib/cron.js"
 const app = express();
