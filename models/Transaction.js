@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const transactionSchema = new mongoose.Schema({
   userId: { type: String, required: true },
@@ -10,4 +10,5 @@ const transactionSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('Transaction', transactionSchema);
+export default mongoose.model('Transaction', transactionSchema);
+

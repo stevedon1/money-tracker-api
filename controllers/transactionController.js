@@ -1,7 +1,7 @@
-const Transaction = require('../models/Transaction');
+import Transaction from '../models/Transaction.js';
 
 // Get all transactions
-const getTransactions = async (req, res) => {
+export const getTransactions = async (req, res) => {
   try {
     const transactions = await Transaction.find();
     res.json(transactions);
@@ -11,7 +11,7 @@ const getTransactions = async (req, res) => {
 };
 
 // Create a transaction
-const createTransaction = async (req, res) => {
+export const createTransaction = async (req, res) => {
   const { type, category, paymentMethod, description, amount, date } = req.body;
   try {
     const newTransaction = new Transaction({ userId: req.user.id, type, category, paymentMethod, description, amount, date });
@@ -22,4 +22,4 @@ const createTransaction = async (req, res) => {
   }
 };
 
-module.exports = { getTransactions, createTransaction };
+// module.exports = { getTransactions, createTransaction };

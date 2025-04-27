@@ -2,6 +2,8 @@ import express  from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import transactionRoutes from './routes/transactions.js';
+import userRoutes from './routes/userRoutes.js';
 dotenv.config();
 import job from "./lib/cron.js"
 const app = express();
@@ -14,10 +16,7 @@ app.use(express.json());
 
 app.get("/", (req,res)=>{res.send("Server running now on port 5000")})
 // Routes
-const transactionRoutes = require('./routes/transactions');
 app.use('/api/transactions', transactionRoutes);
-
-const userRoutes = require('./routes/userRoutes');
 app.use('/api/auth', userRoutes);
 
 // Connect to MongoDB
