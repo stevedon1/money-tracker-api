@@ -4,6 +4,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
+const PORT = process.env.PORT || 3001
 
 // Middleware
 app.use(cors());
@@ -22,7 +23,7 @@ mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log('Connected to MongoDB');
-    app.listen(process.env.PORT, () =>
+    app.listen(PORT, () =>
       console.log(`Server running on port ${process.env.PORT}`)
     );
   })
