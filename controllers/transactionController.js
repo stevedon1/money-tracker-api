@@ -1,14 +1,18 @@
 import Transaction from '../models/Transaction.js';
 
-// Get all transactions
+// Get all transactions for the authenticated user
 export const getTransactions = async (req, res) => {
   try {
-    const transactions = await Transaction.find();
+    const userId = req.user.id; // Extracted from the JWT in auth middleware
+
+    const transactions = await Transaction.find({ user: userId }).sort({ date: -1 });
+
     res.json(transactions);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
+
 
 // Create a transaction
 export const createTransaction = async (req, res) => {
