@@ -5,7 +5,7 @@ export const getTransactions = async (req, res) => {
   try {
     const userId = req.user.id; // Extracted from the JWT in auth middleware
 
-    const transactions = await Transaction.find({ user: userId }).sort({ date: -1 });
+    const transactions = await Transaction.find({ userId }).sort({ date: -1 });
 
     res.json(transactions);
   } catch (err) {
